@@ -10,6 +10,7 @@ RUN curl -sSL https://install.python-poetry.org | python3 -
 # Copy the application and dependency files into the container
 COPY pyproject.toml poetry.lock /app/
 COPY app.py /app/
+COPY app.py frontend.py /app/
 
 # Set the working directory
 WORKDIR /app
@@ -19,6 +20,7 @@ RUN /root/.local/bin/poetry install
 
 # Expose port 5000
 EXPOSE 5000
+EXPOSE 8501
 
 # Set environment variables for Flask app
 ENV FLASK_APP=/app/app.py

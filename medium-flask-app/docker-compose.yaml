@@ -11,3 +11,14 @@ services:
       FLASK_RUN_PORT: 5000
     volumes:
       - .:/app
+
+  streamlit-frontend:
+    build: .
+    ports:
+      - "8501:8501"  # Default port for Streamlit
+    command: /root/.local/bin/poetry run streamlit run /app/frontend.py
+    environment:
+      - STREAMLIT_SERVER_PORT=8501
+      - STREAMLIT_SERVER_HEADLESS=true
+    volumes:
+      - .:/app
