@@ -57,6 +57,12 @@ make clean
 
 ```
 
+## To Test the application manually follow the steps below
+
+1. go to the desired post http://localhost:1000/MyNameIs
+2. Then Type the name in the endpoint something like http://localhost:1000/MyNameIs/Sunny
+3. App will display "Hello Sunny, How are you?"
+
 # Running Locally with Poetry
 
 If you prefer to run the application locally without Docker, follow these steps:
