@@ -19,9 +19,9 @@ fi
 # Delete deployments and services
 echo -e "${YELLOW}🗑️  Deleting Kubernetes resources...${NC}"
 
-kubectl delete -f k8s/streamlit-frontend.yaml --ignore-not-found=true
-kubectl delete -f k8s/flask-backend.yaml --ignore-not-found=true
-kubectl delete -f k8s/namespace.yaml --ignore-not-found=true
+kubectl delete -f infrastructure/kubernetes/streamlit-frontend.yaml --ignore-not-found=true
+kubectl delete -f infrastructure/kubernetes/flask-backend.yaml --ignore-not-found=true
+kubectl delete -f infrastructure/kubernetes/namespace.yaml --ignore-not-found=true
 
 echo -e "${GREEN}✅ Cleanup complete!${NC}"
 echo ""
