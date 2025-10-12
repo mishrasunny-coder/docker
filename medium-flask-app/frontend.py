@@ -14,8 +14,8 @@ st.title("🌟 Flask App Frontend")
 st.markdown("---")
 st.write("This is a Streamlit frontend that connects to your Flask backend!")
 
-# Flask backend URL - using the service name from docker-compose
-FLASK_URL = "http://my-testing-app:5000"
+# Flask backend URL - supports both Docker Compose and Kubernetes
+FLASK_URL = os.getenv("FLASK_BACKEND_URL", "http://my-testing-app:5000")
 
 # Sidebar
 st.sidebar.title("Navigation")

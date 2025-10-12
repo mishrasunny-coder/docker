@@ -1,6 +1,6 @@
 # Makefile
 
-.PHONY: setup start stop clean
+.PHONY: setup start stop clean deploy-minikube cleanup-minikube k8s-logs k8s-status
 
 # Install Poetry and its dependencies
 install:
@@ -21,3 +21,22 @@ stop:
 
 clean:
 	docker-compose down --rmi all -v --remove-orphans
+
+# Minikube deployment targets
+deploy-minikube:
+	@echo "Deploying to Minikube..."
+	./deploy-minikube.sh
+
+cleanup-minikube:
+	@echo "Cleaning up Minikube deployment..."
+	./cleanup-minikube.sh
+
+k8s-status:
+	@echo "Checking Kubernetes status..."
+	kubectl get all -n flask-app
+
+k8s-logs:
+	@echo "Flask Backend logs:"
+	kubectl logs -f deployment/flask-backend -n flask-app --tail=50 &
+	@echo "Streamlit Frontend logs:"
+	kubectl logs -f deployment/streamlit-frontend -n flask-app --tail=50
