@@ -20,6 +20,7 @@ spec:
       - name: streamlit-app
         image: medium-flask-app-streamlit-frontend:latest
         imagePullPolicy: Never  # Use local images built by docker-compose
+        command: ["/root/.local/bin/poetry", "run", "streamlit", "run", "/app/frontend.py", "--server.address", "0.0.0.0"]
         ports:
         - containerPort: 8501
           name: http
