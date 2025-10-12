@@ -25,17 +25,17 @@ eval $(minikube -p minikube docker-env)
 
 # Build the Docker images using Minikube's Docker daemon
 echo -e "${YELLOW}🏗️  Building Docker images in Minikube...${NC}"
-make setup
+cd infrastructure/docker && docker-compose build && cd ../..
 
 # Deploy to Kubernetes
 echo -e "${YELLOW}🚢 Deploying to Kubernetes...${NC}"
 
 # Apply namespace
-kubectl apply -f k8s/namespace.yaml
+kubectl apply -f infrastructure/kubernetes/namespace.yaml
 
 # Apply deployments and services
-kubectl apply -f k8s/flask-backend.yaml
-kubectl apply -f k8s/streamlit-frontend.yaml
+kubectl apply -f infrastructure/kubernetes/flask-backend.yaml
+kubectl apply -f infrastructure/kubernetes/streamlit-frontend.yaml
 
 # Wait for deployments to be ready
 echo -e "${YELLOW}⏳ Waiting for deployments to be ready...${NC}"
