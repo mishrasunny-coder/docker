@@ -1,6 +1,6 @@
 # Makefile
 
-.PHONY: setup start stop clean deploy-minikube cleanup-minikube k8s-logs k8s-status
+.PHONY: setup start stop clean deploy-minikube cleanup-minikube k8s-logs k8s-status k8s-access k8s-stop-access
 
 # Install Poetry and its dependencies
 install:
@@ -40,3 +40,11 @@ k8s-logs:
 	kubectl logs -f deployment/flask-backend -n flask-app --tail=50 &
 	@echo "Streamlit Frontend logs:"
 	kubectl logs -f deployment/streamlit-frontend -n flask-app --tail=50
+
+k8s-access:
+	@echo "Starting local access to Kubernetes apps..."
+	./start-local-access.sh
+
+k8s-stop-access:
+	@echo "Stopping local access to Kubernetes apps..."
+	./stop-local-access.sh
