@@ -8,8 +8,7 @@ RUN apt-get update && \
 RUN curl -sSL https://install.python-poetry.org | python3 -
 
 # Copy the application and dependency files into the container
-COPY pyproject.toml poetry.lock /app/
-COPY app.py /app/
+COPY pyproject.toml poetry.lock README.md /app/
 COPY app.py frontend.py /app/
 
 # Set the working directory
